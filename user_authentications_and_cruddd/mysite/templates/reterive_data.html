@@ -1,0 +1,62 @@
+{% extends 'bash.html' %}
+{% load static %}
+{% block content %}
+     <b>Want to create new data?</b>
+     <p><a href="{% url 'create_list' %}" class="btn btn-primary" style="margin-top:05px;margin-right:50px">Create my data</a>
+
+<div class="container">
+
+  <h2>My Posted Data</h2>
+  <p>Following are the additional details</p>
+    <form action="{% url 'search_item' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="Family_detail">
+    <input type="submit" name="submit" value="Search">
+    </form>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Sr.No</th>
+        <th>NickName</th>
+        <th>WorkDescription</th>
+        <th>Family_detail</th>
+        <th>Picture</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+    <tr>
+
+             <td>{{forloop.counter}} </td>
+             <td>{{i.nick_name}} </td>
+             <td>{{i.work_description}} </td>
+             <td>{{i.Family_detail}} </td>
+             <td><img src="{{ i.user_Img.url }}" width="150px"/></td>
+             <td><a href="{% url 'delete_list' i.id %}">Delete</a><br><a href="{% url 'edit_list' i.id %}">Edit</a></td>
+
+    </tr>
+    {% endfor %}
+
+    {% for i in results %}
+    <tr>
+
+             <td>{{forloop.counter}} </td>
+             <td>{{i.nick_name}} </td>
+             <td>{{i.work_description}} </td>
+             <td>{{i.Family_detail}} </td>
+             <td><img src="{{ i.user_Img.url }}" width="150px"/></td>
+             <td><a href="{% url 'delete_list' i.id %}">Delete</a><br><a href="{% url 'edit_list' i.id %}">Edit</a></td>
+
+    </tr>
+    {% endfor %}
+
+
+    </tbody>
+  </table>
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'bash.html' %}
+
+{% block content %}
+
+    <h1>Welcome, {{ name }}. Thanks for logging in.</h1>
+ <p><a href="{% url 'create_list' %}" class="btn btn-primary" style="margin-top:20px">Create my data</a>
+<img src="{{  user }}" width="300px"/>
+
+
+
+{% endblock %}
